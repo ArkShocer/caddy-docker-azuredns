@@ -41,6 +41,7 @@ docker run -it --name caddy \
     ghcr.io/arkshocer/caddy-docker-azuredns:latest
 ```
 Set the `Caddyfile` accordingly
+https://caddyserver.com/docs/caddyfile/directives/tls#tls
 ```bash
  tls {
    dns azure {
