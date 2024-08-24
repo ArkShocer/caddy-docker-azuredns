@@ -50,15 +50,14 @@ jobs:
           images: |
             ghcr.io/${{ github.repository }}
 
-      - name: Set environment variables
-        run: |
-          echo "BASE_IMAGE=${{ matrix.base_image }}" >> $GITHUB_ENV
-          echo "FINAL_IMAGE=${{ matrix.final_image }}" >> $GITHUB_ENV
+      - name: Debug Matrix Values
+        run: echo "Base Image: ${{ matrix.base_image }} - Final Image: ${{ matrix.final_image }}"
 
       - name: Build and push Docker images
         uses: docker/build-push-action@v6.7.0
         with:
           context: .
+          platforms: linux/amd64,linux/arm64,linux/arm/v8,linux/arm/v7
           push: true
           build-args: |
             BASE_IMAGE=${{ matrix.base_image }}
