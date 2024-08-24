@@ -51,7 +51,7 @@ jobs:
             ghcr.io/${{ github.repository }}
 
       - name: Debug Matrix Values
-        run: echo "Base Image: ${{ matrix.base_image }} - Final Image: ${{ matrix.final_image }}"
+        run: echo "Base Image ${{ matrix.base_image }} - Final Image ${{ matrix.final_image }}"
 
       - name: Build and push Docker images
         uses: docker/build-push-action@v6.7.0
