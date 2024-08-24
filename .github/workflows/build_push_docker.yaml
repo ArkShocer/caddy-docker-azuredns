@@ -57,7 +57,6 @@ jobs:
         uses: docker/build-push-action@v6.7.0
         with:
           context: .
-          platforms: linux/amd64,linux/arm64,linux/arm/v8,linux/arm/v7
           push: true
           build-args: |
             BASE_IMAGE=${{ matrix.base_image }}
