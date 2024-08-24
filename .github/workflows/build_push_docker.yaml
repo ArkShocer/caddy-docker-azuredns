@@ -17,8 +17,11 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        base_image: [caddy:2.8.4-builder, caddy:2.8.4-builder-alpine]
-        final_image: [caddy:2.8.4, caddy:2.8.4-alpine]
+        include:
+          - base_image: caddy:2.8.4-builder
+            final_image: caddy:2.8.4
+          - base_image: caddy:2.8.4-builder-alpine
+            final_image: caddy:2.8.4-alpine
     permissions:
       packages: write
       contents: read
