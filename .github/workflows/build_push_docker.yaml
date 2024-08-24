@@ -58,6 +58,5 @@ jobs:
           build-args: |
             BASE_IMAGE=${{ matrix.base_image }}
             FINAL_IMAGE=${{ matrix.final_image }}
-          tags: |
-            ghcr.io/${{ github.repository }}:${{ github.ref_name }}-${{ matrix.base_image//:/- }}
+          tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
