@@ -1,3 +1,4 @@
+# syntax=docker/dockerfile:1.3
 ARG BASE_IMAGE=caddy:2.8.4-builder
 FROM ${BASE_IMAGE} AS builder
 
