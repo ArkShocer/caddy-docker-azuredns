@@ -15,6 +15,10 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        base_image: [caddy:2.8.4-builder, caddy:2.8.4-builder-alpine]
+        final_image: [caddy:2.8.4, caddy:2.8.4-alpine]
     permissions:
       packages: write
       contents: read
@@ -48,5 +52,9 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          build-args: |
+            BASE_IMAGE=${{ matrix.base_image }}
+            FINAL_IMAGE=${{ matrix.final_image }}
+          tags: |
+            ghcr.io/${{ github.repository }}:${{ github.ref_name }}-${{ matrix.base_image }}
           labels: ${{ steps.meta.outputs.labels }}
