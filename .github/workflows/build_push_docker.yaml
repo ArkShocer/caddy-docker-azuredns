@@ -15,13 +15,6 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        include:
-          - base_image: caddy:2.8.4-builder
-            final_image: caddy:2.8.4
-          - base_image: caddy:2.8.4-builder-alpine
-            final_image: caddy:2.8.4-alpine
     permissions:
       packages: write
       contents: read
@@ -50,16 +43,10 @@ jobs:
           images: |
             ghcr.io/${{ github.repository }}
 
-      - name: Debug Matrix Values
-        run: echo "Base Image ${{ matrix.base_image }} - Final Image ${{ matrix.final_image }}"
-
       - name: Build and push Docker images
-        uses: docker/build-push-action@v6.7.0
+        uses: docker/build-push-action@v6.5.0
         with:
           context: .
           push: true
-          build-args: |
-            BASE_IMAGE=${{ matrix.base_image }}
-            FINAL_IMAGE=${{ matrix.final_image }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
